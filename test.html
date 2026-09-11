@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alex Chen · 美高申请</title>
+  <!-- 使用优雅的字体，提高可读性 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
+  <!-- Font Awesome 图标库，用于社交图标等 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* 全局样式重置与变量 */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --primary: #0a2f44;      /* 深海军蓝，稳重权威 */
+      --accent: #2d7a6e;        /* 墨绿，体现成长与独特性 */
+      --accent-light: #e6f2f0;  /* 极浅绿背景 */
+      --light-bg: #f8fafc;
+      --text-dark: #1e2b37;
+      --text-muted: #4a5c6b;
+      --border-light: #e2e8f0;
+      --card-bg: #ffffff;
+      --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.04);
+      --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.06);
+      --radius-md: 12px;
+      --radius-lg: 24px;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--light-bg);
+      color: var(--text-dark);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+      transition: all 0.2s ease;
+    }
+
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* 导航栏 */
+    .navbar {
+      background-color: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-light);
+      padding: 16px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .navbar .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.4rem;
+      letter-spacing: -0.02em;
+      color: var(--primary);
+    }
+
+    .logo span {
+      color: var(--accent);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      font-weight: 500;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    .nav-links a:hover {
+      color: var(--accent);
+    }
+
+    /* 通用卡片样式 */
+    .card {
+      background: var(--card-bg);
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border-light);
+      padding: 28px;
+      transition: box-shadow 0.2s;
+    }
+
+    .card:hover {
+      box-shadow: var(--shadow-md);
+    }
+
+    .section-title {
+      font-size: 1.75rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      margin-bottom: 24px;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .section-title i {
+      color: var(--accent);
+      font-size: 1.5rem;
+    }
+
+    /* 英雄区域 / 个人资料 */
+    .hero {
+      padding: 48px 0 32px;
+    }
+
+    .hero .container {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 40px;
+    }
+
+    .hero-avatar {
+      flex-shrink: 0;
+    }
+
+    .avatar-circle {
+      width: 160px;
+      height: 160px;
+      background: linear-gradient(135deg, var(--primary) 0%, #1d4e63 100%);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 4rem;
+      font-weight: 500;
+      box-shadow: 0 12px 28px rgba(10, 47, 68, 0.2);
+      border: 4px solid white;
+    }
+
+    .hero-text {
+      flex: 1;
+    }
+
+    .hero-text h1 {
+      font-size: 2.75rem;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+      color: var(--primary);
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    .hero-text .subhead {
+      font-size: 1.2rem;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      font-weight: 400;
+      max-width: 600px;
+    }
+
+    .badge-group {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 8px;
+    }
+
+    .badge {
+      background: var(--accent-light);
+      color: var(--accent);
+      font-weight: 500;
+      font-size: 0.85rem;
+      padding: 6px 16px;
+      border-radius: 40px;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid rgba(45, 122, 110, 0.15);
+    }
+
+    /* 申请进度条小提示 */
+    .apply-note {
+      background: #ffffffd9;
+      backdrop-filter: blur(8px);
+      border-left: 4px solid var(--accent);
+      padding: 12px 20px;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      margin-top: 24px;
+      display: inline-block;
+      box-shadow: var(--shadow-sm);
+    }
+
+    /* 主网格布局 */
+    .main-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 28px;
+      margin-top: 16px;
+    }
+
+    /* 左侧内容 */
+    .left-col {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    /* 关于我 */
+    .about-text p {
+      margin-bottom: 16px;
+      color: var(--text-muted);
+      font-size: 1rem;
+    }
+
+    .about-text p:last-child {
+      margin-bottom: 0;
+    }
+
+    .highlight {
+      color: var(--primary);
+      font-weight: 600;
+    }
+
+    /* 学术成就 */
+    .academic-list {
+      list-style: none;
+    }
+
+    .academic-list li {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 18px;
+      padding-bottom: 18px;
+      border-bottom: 1px dashed var(--border-light);
+    }
+
+    .academic-list li:last-child {
+      margin-bottom: 0;
+      padding-bottom: 0;
+      border-bottom: none;
+    }
+
+    .academic-icon {
+      flex-shrink: 0;
+      width: 40px;
+      height: 40px;
+      background: var(--accent-light);
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent);
+      font-size: 1.1rem;
+    }
+
+    .academic-content h4 {
+      font-size: 1.05rem;
+      font-weight: 600;
+      margin-bottom: 4px;
+      color: var(--primary);
+    }
+
+    .academic-content .meta {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 6px;
+    }
+
+    .academic-content .meta i {
+      margin-right: 4px;
+      font-size: 0.8rem;
+      color: var(--accent);
+    }
+
+    .academic-content p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    /* 课外活动与领导力卡片 */
+    .activities-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .activity-item {
+      background: var(--light-bg);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      border: 1px solid var(--border-light);
+      transition: all 0.15s;
+    }
+
+    .activity-item:hover {
+      background: white;
+      border-color: var(--accent);
+    }
+
+    .activity-item h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .activity-item h4 i {
+      color: var(--accent);
+      font-size: 0.9rem;
+    }
+
+    .activity-item p {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    /* 右侧栏 */
+    .right-col {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    /* 联系信息卡片 */
+    .contact-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+
+    .contact-list li {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      font-size: 0.95rem;
+      color: var(--text-muted);
+    }
+
+    .contact-list i {
+      width: 20px;
+      color: var(--accent);
+      font-size: 1.1rem;
+      text-align: center;
+    }
+
+    .contact-list a {
+      color: var(--text-muted);
+      border-bottom: 1px dotted transparent;
+    }
+
+    .contact-list a:hover {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    /* 技能 / 语言 */
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .skill-tag {
+      background: var(--light-bg);
+      border: 1px solid var(--border-light);
+      padding: 6px 14px;
+      border-radius: 40px;
+      font-size: 0.85rem;
+      color: var(--text-dark);
+      font-weight: 500;
+    }
+
+    /* 推荐信 / 引用 */
+    .testimonial {
+      background: linear-gradient(145deg, #f0f7f6, #ffffff);
+      border-left: 4px solid var(--accent);
+      border-radius: 12px;
+      padding: 22px;
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-top: 8px;
+    }
+
+    .testimonial i {
+      color: var(--accent);
+      opacity: 0.7;
+      margin-right: 6px;
+    }
+
+    .testimonial .author {
+      display: block;
+      margin-top: 12px;
+      font-style: normal;
+      font-weight: 600;
+      color: var(--primary);
+      font-size: 0.9rem;
+    }
+
+    /* 页脚 */
+    .footer {
+      margin-top: 64px;
+      padding: 32px 0;
+      border-top: 1px solid var(--border-light);
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
+    .footer .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 20px;
+    }
+
+    .footer .social-links a {
+      color: var(--text-muted);
+      font-size: 1.25rem;
+    }
+
+    .footer .social-links a:hover {
+      color: var(--accent);
+      transform: translateY(-2px);
+    }
+
+    /* 响应式设计 */
+    @media (max-width: 900px) {
+      .main-grid {
+        grid-template-columns: 1fr;
+      }
+      .hero .container {
+        flex-direction: column;
+        text-align: center;
+        gap: 24px;
+      }
+      .hero-text h1 {
+        font-size: 2.2rem;
+      }
+      .hero-text .subhead {
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .badge-group {
+        justify-content: center;
+      }
+      .apply-note {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+        display: block;
+      }
+      .activities-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .navbar .container {
+        flex-direction: column;
+        gap: 12px;
+      }
+      .nav-links {
+        gap: 20px;
+        font-size: 0.85rem;
+      }
+      .card {
+        padding: 20px;
+      }
+      .section-title {
+        font-size: 1.5rem;
+      }
+      .academic-list li {
+        flex-direction: column;
+        gap: 10px;
+      }
+      .avatar-circle {
+        width: 120px;
+        height: 120px;
+        font-size: 3rem;
+      }
+    }
+
+    /* 小点缀 */
+    .school-badge {
+      display: inline-block;
+      background-color: var(--primary);
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 600;
+      padding: 2px 10px;
+      border-radius: 40px;
+      letter-spacing: 0.02em;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 导航栏 -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="logo">ALEX<span>CHEN</span></div>
+      <div class="nav-links">
+        <a href="#about">关于</a>
+        <a href="#academics">学术</a>
+        <a href="#activities">活动</a>
+        <a href="#contact">联系</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 主内容 -->
+  <main>
+    <!-- 英雄 / 个人资料区 -->
+    <header class="hero">
+      <div class="container">
+        <div class="hero-avatar">
+          <div class="avatar-circle">AC</div>
+        </div>
+        <div class="hero-text">
+          <h1>Alex Chen</h1>
+          <p class="subhead">
+            一名对科技、环保与社区服务充满热情的九年级学生，正在寻找能够激发好奇心与领导力的美国高中。
+          </p>
+          <div class="badge-group">
+            <span class="badge"><i class="fas fa-graduation-cap"></i> 2026 秋季入学</span>
+            <span class="badge"><i class="fas fa-map-pin"></i> 上海 · 中国</span>
+            <span class="badge"><i class="fas fa-code"></i> 编程 / 机器人</span>
+          </div>
+          <!-- 申请状态提示，可自行修改 -->
+          <div class="apply-note">
+            <i class="fas fa-paper-plane" style="color: var(--accent); margin-right: 8px;"></i>
+            申请材料已准备就绪，期待与招生官交流。
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- 主要内容网格 -->
+    <div class="container">
+      <div class="main-grid">
+        <!-- 左侧：关于、学术、活动 -->
+        <div class="left-col">
+          <!-- 关于我 -->
+          <section id="about" class="card">
+            <h2 class="section-title"><i class="fas fa-user-astronaut"></i> 关于我</h2>
+            <div class="about-text">
+              <p>
+                你好！我是 Alex，一名<span class="highlight">充满好奇心与行动力</span>的九年级学生。从小我就喜欢拆解家里的旧电器，再尝试用编程让它们“活”起来。这份对创造的热爱延续至今，现在我最享受的事情之一是用 Arduino 和 Python 解决生活中的小问题。
+              </p>
+              <p>
+                在学校，我是机器人社团的副队长，也是环保社的积极成员。我相信<span class="highlight">技术应该服务于社区</span>，因此我发起了一个校园旧电池回收项目，并设计了简单的数据追踪表来优化回收流程。
+              </p>
+              <p>
+                课余时间，我喜欢打网球、弹爵士钢琴，以及阅读科幻小说。我期待在一个鼓励跨学科思考、重视社区精神的美高校园里继续成长。
+              </p>
+            </div>
+          </section>
+
+          <!-- 学术成就 -->
+          <section id="academics" class="card">
+            <h2 class="section-title"><i class="fas fa-book-open"></i> 学术成就</h2>
+            <ul class="academic-list">
+              <li>
+                <div class="academic-icon"><i class="fas fa-chart-line"></i></div>
+                <div class="academic-content">
+                  <h4>校内成绩</h4>
+                  <div class="meta">
+                    <span><i class="fas fa-calendar-alt"></i> 2023 – 至今</span>
+                    <span><i class="fas fa-star"></i> GPA 3.98/4.0</span>
+                  </div>
+                  <p>核心课程全A，尤其在数学、物理和计算机科学中表现突出。连续两学期获得学术卓越奖。</p>
+                </div>
+              </li>
+              <li>
+                <div class="academic-icon"><i class="fas fa-trophy"></i></div>
+                <div class="academic-content">
+                  <h4>FIRST 机器人竞赛</h4>
+                  <div class="meta">
+                    <span><i class="fas fa-users"></i> 团队核心程序员</span>
+                    <span><i class="fas fa-award"></i> 区域赛冠军</span>
+                  </div>
+                  <p>负责机器人自动阶段的控制算法设计与调试，帮助团队获得 2024 年上海赛区冠军。</p>
+                </div>
+              </li>
+              <li>
+                <div class="academic-icon"><i class="fas fa-language"></i></div>
+                <div class="academic-content">
+                  <h4>语言与标化</h4>
+                  <div class="meta">
+                    <span><i class="fas fa-check-circle"></i> 托福 112</span>
+                    <span><i class="fas fa-check-circle"></i> SSAT 2250+</span>
+                  </div>
+                  <p>英语流利，具备良好的学术写作与沟通能力。正在自学西班牙语基础。</p>
+                </div>
+              </li>
+            </ul>
+          </section>
+
+          <!-- 课外活动与领导力 -->
+          <section id="activities" class="card">
+            <h2 class="section-title"><i class="fas fa-hiking"></i> 课外活动 & 领导力</h2>
+            <div class="activities-grid">
+              <div class="activity-item">
+                <h4><i class="fas fa-robot"></i> 机器人社团副队长</h4>
+                <p>组织每周编程工作坊，带领 8 名新成员学习 Java 基础与传感器整合。</p>
+              </div>
+              <div class="activity-item">
+                <h4><i class="fas fa-recycle"></i> 绿色校园倡议</h4>
+                <p>发起电池回收计划，设计宣传海报并与本地回收中心合作，累计回收 200+ 公斤电池。</p>
+              </div>
+              <div class="activity-item">
+                <h4><i class="fas fa-music"></i> 爵士钢琴</h4>
+                <p>学习钢琴 8 年，通过英皇八级。在校内音乐节中与乐队合作演出。</p>
+              </div>
+              <div class="activity-item">
+                <h4><i class="fas fa-table-tennis"></i> 网球校队</h4>
+                <p>作为主力双打选手参加区级比赛，培养了团队协作与抗压能力。</p>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- 右侧栏：联系、技能、推荐语等 -->
+        <div class="right-col">
+          <!-- 联系信息卡片 -->
+          <section id="contact" class="card">
+            <h2 class="section-title" style="font-size: 1.4rem;"><i class="fas fa-address-card"></i> 联系</h2>
+            <ul class="contact-list">
+              <li><i class="fas fa-envelope"></i> <a href="mailto:alex.chen@example.com">alex.chen@example.com</a></li>
+              <li><i class="fas fa-phone-alt"></i> +86 138 0000 1234</li>
+              <li><i class="fas fa-globe"></i> <a href="#">alexchen.me (个人作品集)</a></li>
+              <li><i class="fab fa-github"></i> <a href="#">github.com/alexchen-dev</a></li>
+            </ul>
+            <div style="margin-top: 20px;">
+              <span class="school-badge">Skype 面试可约</span>
+            </div>
+          </section>
+
+          <!-- 技能 / 兴趣 -->
+          <section class="card">
+            <h2 class="section-title" style="font-size: 1.4rem;"><i class="fas fa-cog"></i> 技能与兴趣</h2>
+            <div class="skill-tags">
+              <span class="skill-tag">Python</span>
+              <span class="skill-tag">Java</span>
+              <span class="skill-tag">Arduino</span>
+              <span class="skill-tag">Fusion 360</span>
+              <span class="skill-tag">数据分析</span>
+              <span class="skill-tag">爵士钢琴</span>
+              <span class="skill-tag">网球</span>
+              <span class="skill-tag">摄影</span>
+            </div>
+          </section>
+
+          <!-- 推荐信 / 引用 (展示个人品质) -->
+          <section class="card">
+            <h2 class="section-title" style="font-size: 1.4rem;"><i class="fas fa-quote-right"></i> 推荐语</h2>
+            <div class="testimonial">
+              <i class="fas fa-quote-left"></i> Alex 展现出超越年龄的成熟与同理心。他不仅自己热爱学习，还总能带动周围同学一起探索。
+              <span class="author">— 张老师，科学教研组长</span>
+            </div>
+            <div class="testimonial" style="margin-top: 16px;">
+              <i class="fas fa-quote-left"></i> 他的机器人编程能力与团队合作精神令人印象深刻，是难得的全面型学生。
+              <span class="author">— 李教练，机器人社团指导</span>
+            </div>
+          </section>
+
+          <!-- 小提示: 申请材料下载 (可选) -->
+          <div class="card" style="background: var(--accent-light); border: none;">
+            <div style="display: flex; align-items: center; gap: 12px; color: var(--accent); font-weight: 500;">
+              <i class="fas fa-file-pdf" style="font-size: 1.6rem;"></i>
+              <span>简历 / 作品集可应要求提供</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- 页脚 -->
+  <footer class="footer">
+    <div class="container">
+      <div class="social-links">
+        <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+        <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+        <a href="#" aria-label="YouTube"><i class="fab fa-youtube"></i></a>
+      </div>
+      <p>© 2025 Alex Chen · 美高申请个人网站 · 保持好奇，持续成长</p>
+      <p style="margin-top: 8px; font-size: 0.8rem; opacity: 0.7;">Designed for American High School Application</p>
+    </div>
+  </footer>
+
+  <!-- 简单的导航平滑滚动 (可选) -->
+  <script>
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        const href = this.getAttribute('href');
+        if (href === '#') return;
+        const target = document.querySelector(href);
+        if (target) {
+          e.preventDefault();
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    });
+  </script>
+</body>
+</html>
